@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duration And Peak Time</title>
+  <link rel="stylesheet" href="GuiFYP.css">
+  <!-- Include Chart.js library from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript" src="/eel.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <!-- Canvas element where the chart will be rendered -->
+    <canvas id="myLineChart" width="1080" height="400"></canvas>
+  </div>
+
+  <div class = "container_summary">
+    <div class = "container_summary_des">
+        <img src = "Icon/clock.png">
+        <p><b>Peak Time</b></p>
+        <p id ="time">00:00:00</p>
+    </div>
+
+    <div class = "gauge_container">
+        <p id="gaugetitle">Microsleep Level</p>
+      <div class = "progress_bar_border">
+         <div class = "progress_bar_red"><p>Bad</p>></div>
+         <div class = "progress_bar_orange"><p>Average</p></div>
+         <div class = "progress_bar_green"><p>Good</p> </div>
+         <div class="progress_bar_needle"></div>
+      </div>
+      <p id="avg_eye_close">Eye Close 0.0 Second</p>
+    </div>
+  </div>
+
+  <script src="GuiFYP.js"></script>
+</body>
+</html>
