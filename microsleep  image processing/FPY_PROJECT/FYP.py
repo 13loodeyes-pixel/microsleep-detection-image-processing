@@ -8,8 +8,8 @@ import datetime
 import pyttsx3
 import smtplib
 
-import Firebase
-from Firebase import insert
+import Database
+from Database import insert
 from collections import deque
 import face_recognition
 import threading
@@ -49,7 +49,7 @@ def send_email(msg):
 
 result_from_database = queue.Queue()
 def fetch_data_database(q):
-    face_fetch = Firebase.fetch_face("User")
+    face_fetch = Database.fetch_face("User")
 
     face_encodin = []
 

@@ -1,0 +1,20 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFileSync} from 'node:fs';
+test('location opt-in, stale exclusion, denial and watcher cleanup',()=>{
+  let success,error;const cleared=[];const messages=[];
+  const context={window:{},navigator:{geolocation:{watchPosition(a,b){success=a;error=b;return 7},clearWatch(id){cleared.push(id)}}},Date,Number};
+  vm.createContext(context);vm.runInContext(readFileSync(new URL('../../DASHBOARD/LocationTracker.js',import.meta.url),'utf8'),context);
+  const tracker=context.window.LocationTracker;
+  assert.equal(tracker.snapshot(),null);
+  tracker.start(text=>messages.push(text));
+  success({coords:{latitude:3.139,longitude:101.6869,accuracy:12},timestamp:Date.now()});
+  assert.equal(tracker.snapshot().accuracy,12);
+  success({coords:{latitude:3.139,longitude:101.6869,accuracy:12},timestamp:Date.now()-31000});
+  assert.equal(tracker.snapshot(),null);
+  error({code:1});assert.equal(tracker.snapshot(),null);assert.match(messages.at(-1),/denied/);
+  tracker.stop();assert.deepEqual(cleared,[7]);
+  success({coords:{latitude:3.139,longitude:101.6869,accuracy:12},timestamp:Date.now()});
+  assert.equal(tracker.snapshot(),null);
+});

@@ -1,40 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Duration And Peak Time</title>
-  <link rel="stylesheet" href="GuiFYP.css">
-  <!-- Include Chart.js library from CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="text/javascript" src="/eel.js"></script>
-
-</head>
-<body>
-  <div class="container">
-    <!-- Canvas element where the chart will be rendered -->
-    <canvas id="myLineChart" width="1080" height="400"></canvas>
-  </div>
-
-  <div class = "container_summary">
-    <div class = "container_summary_des">
-        <img src = "Icon/clock.png">
-        <p><b>Peak Time</b></p>
-        <p id ="time">00:00:00</p>
-    </div>
-
-    <div class = "gauge_container">
-        <p id="gaugetitle">Microsleep Level</p>
-      <div class = "progress_bar_border">
-         <div class = "progress_bar_red"><p>Bad</p>></div>
-         <div class = "progress_bar_orange"><p>Average</p></div>
-         <div class = "progress_bar_green"><p>Good</p> </div>
-         <div class="progress_bar_needle"></div>
-      </div>
-      <p id="avg_eye_close">Eye Close 0.0 Second</p>
-    </div>
-  </div>
-
-  <script src="GuiFYP.js"></script>
-</body>
-</html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MicroSleep · Duration insights</title><link rel="stylesheet" href="MainPage.css"><link rel="stylesheet" href="GuiFYP.css"><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script><script src="CloudApi.js"></script><script src="GuiFYP.js" defer></script></head>
+<body><header class="topbar"><a class="brand" href="MainPage.html"><span class="brand-mark" aria-hidden="true">m<span>·</span></span>MicroSleep<span class="brand-tag">DRIVER INSIGHTS</span></a><a class="back-link" href="MainPage.html">← Back to overview</a></header>
+<main><section class="page-intro"><div><p class="eyebrow">DURATION & TIMING</p><h1>Every moment.<br><span>A clearer picture.</span></h1><p class="intro-copy">Explore recorded eye closure durations and find the longest event in your driver's history.</p></div><div class="driver-badge"><span class="badge-dot"></span><span id="driver-label">Recorded activity</span></div></section>
+<p id="page-status" role="status" aria-live="polite">Loading duration insights…</p>
+<section class="metric-grid" aria-label="Duration summary"><article class="metric-card"><span class="metric-label">AVERAGE DURATION</span><strong id="average">—</strong><p>Across all recorded events</p></article><article class="metric-card featured"><span class="metric-label">LONGEST CLOSURE</span><strong id="longest">—</strong><p id="time">Time unavailable</p></article><article class="metric-card"><span class="metric-label">RECORDED EVENTS</span><strong id="event-count">—</strong><p>Included in this view</p></article><article class="metric-card"><span class="metric-label">TOTAL CLOSURE TIME</span><strong id="total">—</strong><p>Sum of recorded durations</p></article></section>
+<section class="chart-panel" aria-labelledby="chart-title"><div class="chart-heading"><div><p class="eyebrow">EVENT HISTORY</p><h2 id="chart-title">Eye closure duration</h2><p>Each point represents one recorded event.</p></div><span class="chart-legend"><span></span>Duration in seconds</span></div><div class="chart-wrap" id="chart-wrap"><canvas id="myLineChart" role="img" aria-label="Eye closure durations for recorded events; equivalent values are in the event list below."></canvas></div><div class="empty-state" id="empty-state" hidden><span aria-hidden="true">◷</span><h3>No recordings to show yet</h3><p>Select a driver with recordings from the overview, or start a monitoring session.</p><a href="MainPage.html">Back to overview →</a></div><div class="chart-note">Times are shown as recorded. Events can span multiple dates.</div></section>
+<section class="details-panel"><details><summary>View event values <span id="table-count"></span></summary><div class="table-scroll"><table><caption class="sr-only">Eye closure event durations</caption><thead><tr><th scope="col">Event</th><th scope="col">Recorded time</th><th scope="col">Duration</th><th scope="col">Event location</th></tr></thead><tbody id="event-values"></tbody></table></div></details></section>
+<div class="insight-note"><span aria-hidden="true">ⓘ</span><p>These measurements describe recorded eye closures. They are not a clinical assessment or a validated measure of driving safety.</p></div>
+<footer><span>MicroSleep <span class="footer-dot">/</span> Duration insights</span><a href="Monitoring.html">Start a monitoring session ↗</a><span class="developer-credit">Developed by <strong>13loodeye-pixel</strong></span></footer></main></body></html>

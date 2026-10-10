@@ -1,6 +1,6 @@
 import eel
 import numpy as np
-import Firebase
+import Database
 
 def time_percent(time):
     if 0 <= time <= 2:
@@ -23,7 +23,7 @@ eel.init('DASHBOARD')
 @eel.expose
 def get_user_data(name):
 
-    data_ret = Firebase.fetch("Microsleep", name, "Information")
+    data_ret = Database.fetch("Microsleep", name, "Information")
 
     time_list = []
 

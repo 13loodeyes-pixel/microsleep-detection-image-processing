@@ -1,5 +1,7 @@
 import eel
-import Firebase
+import Database
+import Monitoring  # Expose browser monitoring endpoints.
+import FaceRegister  # Register browser-photo Eel endpoints.
 import numpy as np
 
 def time_percent(time):
@@ -28,7 +30,7 @@ def getTotalEyesClosedPerDay():
 
     global username
 
-    data_ret = Firebase.fetch("Microsleep",username, "Information")
+    data_ret = Database.fetch("Microsleep",username, "Information")
 
     eye_close_list = []
 
@@ -51,7 +53,7 @@ def getTotalEyesClosedPerDay():
 
             eye_close_list[index] += eye_close
 
-    data = {"date":date_list,"eye_close":eye_close_list}
+    data = {"date":date_list,"eye_close":eye_close_list,"driver":username}
 
     return data
 
@@ -62,7 +64,7 @@ def GetDailyMicrosleepPattern():
 
     global username
 
-    data_ret = Firebase.fetch("Microsleep",username,"Information")
+    data_ret = Database.fetch("Microsleep",username,"Information")
 
     num_days = []
 
@@ -87,9 +89,9 @@ def GetDailyMicrosleepPattern():
         percent = [round((count / total_days) * 100) for count in days]
 
     else:
-        percent = [0, 0, 0, 0]
+        percent = [0, 0, 0, 0, 0]
 
-    data = {'count_days':days,'percent':percent}
+    data = {'count_days':days,'percent':percent,'driver':username}
 
     return data
 
@@ -98,7 +100,7 @@ def get_user_data():
 
     global username
 
-    data_ret = Firebase.fetch("Microsleep", username, "Information")
+    data_ret = Database.fetch("Microsleep", username, "Information")
 
     time_list = []
 
@@ -114,6 +116,10 @@ def get_user_data():
         time_list.append(time)
 
         eye_close_sec_list.append(eye_close_sec)
+
+    if not eye_close_sec_list:
+        return {'Time': [], 'eyeClose': [], 'peakTime': None,
+                'averageEyeClose': 0, 'percent': 0, 'driver': username}
 
     total_eye_close = sum(eye_close_sec_list)
 
@@ -131,7 +137,7 @@ def get_user_data():
 
     average_eye_close = format(average_eye_close, '.2f')
 
-    data = {'Time': time_list, 'eyeClose':eye_close_sec_list,'peakTime':peak_time,'averageEyeClose':average_eye_close,'percent':percentage}
+    data = {'Time': time_list, 'eyeClose':eye_close_sec_list,'peakTime':peak_time,'averageEyeClose':average_eye_close,'percent':percentage,'driver':username}
 
     return data
 
@@ -146,7 +152,7 @@ def getName(name):
 
     username = name
 
-    name = Firebase.check_name(name)
+    name = Database.check_name(name)
 
     data = {"name_check":name}
 
@@ -154,4 +160,7 @@ def getName(name):
 
     return data
 
-eel.start("MainPage.html",size=((1920,1080)))
+if __name__ == "__main__":
+    print("Open http://localhost:8000/MainPage.html in your browser.", flush=True)
+    print("Keep this terminal open. Press Ctrl+C to stop the dashboard.", flush=True)
+    eel.start("MainPage.html", mode=None, host="localhost", port=8000)

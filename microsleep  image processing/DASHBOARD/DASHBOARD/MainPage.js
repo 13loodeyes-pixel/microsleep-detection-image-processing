@@ -1,109 +1,56 @@
-function check_name(){
-
-    search_btn = document.getElementById('seach_btn');
-
-    msg = document.getElementById('msg_error');
-
-    serach_bar = document.getElementById('serach_bar');
-
-    const ms_peakhour = document.getElementById('ms-peakhour');
-
-    const ms_pattern = document.getElementById('ms-pattern');
-
-    const ms_eyeclose = document.getElementById('ms-eyeclose');
-
-    ms_peakhour.disabled = true;
-    ms_pattern.disabled = true;
-    ms_eyeclose.disabled = true;
-
-    ms_peakhour.style.opacity=0.5;
-    ms_pattern.style.opacity=0.5;
-    ms_eyeclose.style.opacity=0.5;
-
-
-    seach_btn.addEventListener('click',function(){
-
-        eel.getName(serach_bar.value)(function(data){
-
-            if(data.name_check)
-            {
-                msg.innerHTML = "Name Found";
-                msg.style.color = '#1d913c';
-                ms_peakhour.style.opacity=1;
-                ms_pattern.style.opacity=1;
-                ms_eyeclose.style.opacity=1;
-
-                ms_peakhour.disabled = false;
-                ms_pattern.disabled = false;
-                ms_eyeclose.disabled = false;
-
-            }
-
-            else
-            {
-                msg.innerHTML = "Name Not Found";
-                msg.style.color = '#b50b02';
-                ms_peakhour.style.opacity=0.5;
-                ms_pattern.style.opacity=0.5;
-                ms_eyeclose.style.opacity=0.5;
-
-                ms_peakhour.disabled = true;
-                ms_pattern.disabled = true;
-                ms_eyeclose.disabled = true;
-
-            }
-        });
-
-
-    });
-
-}
-
-function btn_config(){
-
-    ms_peakhour = document.getElementById('ms-peakhour');
-
-    ms_pattern = document.getElementById('ms-pattern');
-
-    ms_eyeclose = document.getElementById('ms-eyeclose');
-
-    face_register = document.getElementById('face-register');
-
-    ms_eyeclose.addEventListener('click',function(){
-            if(!ms_peakhour.disabled){
-                window.location.href = 'TotalEyesClosePerDay.html';
-            }
-    });
-
-    ms_pattern.addEventListener('click',function(){
-
-             if(!ms_pattern.disabled){
-                window.location.href = 'DailyMicrosleepPatern.html';
-             }
-    });
-
-    ms_peakhour.addEventListener('click',function(){
-
-            if(!ms_eyeclose.disabled){
-                 window.location.href = 'GuiFYP.html';
-            }
-
-    });
-
-    face_register.addEventListener('click',function(){
-
-        window.location.href = 'FaceRegister.html';
-
-        eel.start_camera();
-
-    });
-
-}
-
-window.onload = function(){
-
-    check_name();
-
-    btn_config();
-};
-
+'use strict';
+window.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('search-form');
+  const input = document.getElementById('serach_bar');
+  const search = document.getElementById('seach_btn');
+  const message = document.getElementById('msg_error');
+  const selection = document.getElementById('selection-status');
+  const routes = {
+    'ms-eyeclose': 'TotalEyesClosePerDay.html',
+    'ms-pattern': 'DailyMicrosleepPatern.html',
+    'ms-peakhour': 'GuiFYP.html',
+  };
+  let revision = 0;
+  function lockCards() {
+    Object.keys(routes).forEach(id => { document.getElementById(id).disabled = true; });
+    selection.textContent = 'Select a driver to get started';
+  }
+  input.addEventListener('input', () => {
+    revision += 1;
+    lockCards();
+    message.textContent = 'Search to select this driver.';
+    message.dataset.state = '';
+  });
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    const name = input.value.trim();
+    if (!name) { input.focus(); return; }
+    const current = ++revision;
+    lockCards();
+    search.disabled = true;
+    message.textContent = 'Looking up driver…';
+    message.dataset.state = '';
+    try {
+      const data = await eel.getName(name)();
+      if (current !== revision) return;
+      if (data.name_check) {
+        Object.keys(routes).forEach(id => { document.getElementById(id).disabled = false; });
+        message.textContent = `Driver selected: ${name}`;
+        selection.textContent = `Insights for ${name}`;
+      } else {
+        message.textContent = 'No recordings found for this name. Register a driver or try another name.';
+        message.dataset.state = 'error';
+      }
+    } catch {
+      if (current !== revision) return;
+      message.textContent = 'Could not load this driver. Check your connection and try again.';
+      message.dataset.state = 'error';
+    } finally { search.disabled = false; }
+  });
+  Object.entries(routes).forEach(([id, route]) => {
+    document.getElementById(id).addEventListener('click', () => { window.location.href = route; });
+  });
+  document.getElementById('face-register').addEventListener('click', () => {
+    window.location.href = 'FaceRegister.html';
+  });
+});

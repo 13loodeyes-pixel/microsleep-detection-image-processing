@@ -21,7 +21,7 @@ from kivy.core.window import Window
 import numpy as np
 from matplotlib.ticker import MaxNLocator
 
-import Firebase
+import Database
 
 class Dashboard(MDApp):
 
@@ -36,7 +36,7 @@ class Dashboard(MDApp):
 
     def filterretrieve_data_bar(self):
 
-        data_ret = Firebase.fetch("Microsleep")
+        data_ret = Database.fetch("Microsleep")
 
         eye_close_list = []
 
@@ -74,7 +74,7 @@ class Dashboard(MDApp):
 
     def filterretrieve_data_line(self):
 
-        date_ret = Firebase.fetch("Microsleep")
+        date_ret = Database.fetch("Microsleep")
 
         time_list = []
 
@@ -107,7 +107,7 @@ class Dashboard(MDApp):
 
     def filter_data_pie(self):
 
-        date_ret = Firebase.fetch("Microsleep")
+        date_ret = Database.fetch("Microsleep")
 
         num_days = []
 

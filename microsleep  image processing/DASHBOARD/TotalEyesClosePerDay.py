@@ -1,12 +1,12 @@
 import eel
-import Firebase
+import Database
 
 eel.init("DASHBOARD")
 
 @eel.expose
 def getTotalEyesClosedPerDay(name):
 
-    data_ret = Firebase.fetch("Microsleep",name, "Information")
+    data_ret = Database.fetch("Microsleep",name, "Information")
 
     eye_close_list = []
 

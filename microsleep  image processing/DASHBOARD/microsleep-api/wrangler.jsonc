@@ -1,0 +1,17 @@
+{
+	"name": "microsleep-api",
+	"main": "src/index.js",
+	"vars": {"ADMIN_EMAIL": "fikriskull12@gmail.com"},
+	"compatibility_date": "2026-10-10",
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "microsleep",
+			"database_id": "cc3bf6e0-18b0-4a1a-b5d8-39b087404b25"
+		}
+	],
+	"assets": {"directory": "../DASHBOARD", "binding": "ASSETS", "run_worker_first": true, "html_handling": "none"},
+	"observability": {
+		"enabled": true,
+	},
+}

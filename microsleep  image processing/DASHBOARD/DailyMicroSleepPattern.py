@@ -1,5 +1,5 @@
 import eel
-import Firebase
+import Database
 
 eel.init('DASHBOARD')
 
@@ -10,7 +10,7 @@ def GetDailyMicrosleepPattern(name):
 
     #print(name)
 
-    data_ret = Firebase.fetch("Microsleep","hanish","Information")
+    data_ret = Database.fetch("Microsleep","hanish","Information")
 
     num_days = []
 

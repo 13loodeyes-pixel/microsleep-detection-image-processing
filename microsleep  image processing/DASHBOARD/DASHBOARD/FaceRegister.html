@@ -1,41 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="/eel.js"></script>
-    <link rel="stylesheet" href="FaceRegister.css">
-    <title>Register</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MicroSleep · Register driver</title>
+  <link rel="stylesheet" href="MainPage.css">
+  <link rel="stylesheet" href="FaceRegister.css">
+  <script src="CloudApi.js"></script><script src="BrowserDetection.js" defer></script>
+  <script src="FaceRegister.js" defer></script>
 </head>
-
 <body>
-  <div class="body">
-      <h1>REGISTER FACE</h1>
-      <div class=form>
-          <div id="video_container">
-              <img id="video_frame" alt="Video Feed">
-          </div>
-          <form>
-            <label>Username:</label>
-            <br>
-            <input type="text" id="username">
-          </form>
-          <div class="button">
-            <button id="snap_btn">Snap</button>
-            <button id ="register_btn">Register</button>
-            <button id="reset_btn">Reset</button>
-                <p id="msg_code"></p>
-          </div>
-
-      </div>
-
+  <header class="topbar"><a class="brand" href="MainPage.html"><span class="brand-mark" aria-hidden="true">m<span>·</span></span>MicroSleep<span class="brand-tag">DRIVER INSIGHTS</span></a><a class="back-link" href="MainPage.html">← Back to overview</a></header>
+  <main>
+    <section class="registration-intro"><p class="eyebrow">DRIVER REGISTRATION</p><h1>A familiar face.<br><span>A personal profile.</span></h1><p class="intro-copy">Capture a clear photo and give your driver profile a name to connect future recordings.</p></section>
+    <div class="registration-grid">
+      <section class="camera-panel" aria-labelledby="camera-title">
+        <div class="panel-heading"><h2 id="camera-title">Camera preview</h2><span id="camera-status" class="camera-status">Connecting</span></div>
+        <div id="video_container"><div class="camera-placeholder" id="camera-placeholder"><span class="camera-symbol" aria-hidden="true">◎</span><strong>Getting your camera ready</strong><p>Keep your face centered and clearly visible.</p></div><video id="camera_video" autoplay muted playsinline hidden aria-label="Live camera preview"></video><img id="video_frame" alt="Captured driver photo" hidden></div>
+        <div class="camera-note"><span aria-hidden="true">◌</span> Use even lighting and look directly at the camera.</div>
+      </section>
+      <section class="profile-panel" aria-labelledby="profile-title"><p class="eyebrow">YOUR PROFILE</p><h2 id="profile-title">Let’s get you registered</h2><p class="profile-copy">A name and a clear capture are all you need to get started.</p>
+        <ol class="capture-guide"><li><span>01</span><div><strong>Position your face</strong><p>Face the camera with your full face visible.</p></div></li><li><span>02</span><div><strong>Capture a photo</strong><p>Choose Capture when the preview is ready.</p></div></li><li><span>03</span><div><strong>Save your profile</strong><p>Enter your name and select Register driver.</p></div></li></ol>
+        <form id="registration-form"><label for="username">Driver name</label><input type="text" id="username" placeholder="e.g. Alex Tan" maxlength="200" autocomplete="name" required><p class="field-hint">Use this name to find your recordings on the dashboard.</p><div class="capture-actions"><button type="button" id="snap_btn" disabled>Capture photo <span aria-hidden="true">◎</span></button><button type="button" id="reset_btn">Reset</button></div><button type="submit" id="register_btn" disabled>Register driver <span aria-hidden="true">↗</span></button></form>
+        <p id="msg_code" role="status" aria-live="polite">Waiting for the camera…</p>
+      </section>
     </div>
-
-  </div>
-
-    <script src="FaceRegister.js"></script>
+    <footer><span>MicroSleep <span class="footer-dot">/</span> Driver registration</span><span>Return to the overview to explore recorded activity.</span><span class="developer-credit">Developed by <strong>13loodeye-pixel</strong></span></footer>
+  </main>
 </body>
-
 </html>

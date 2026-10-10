@@ -1,51 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard </title>
-    <link rel="stylesheet" href="MainPage.css">
-    <script type="text/javascript" src="/eel.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MicroSleep · Overview</title>
+  <link rel="stylesheet" href="MainPage.css">
+  <script src="CloudApi.js"></script>
+  <script src="MainPage.js" defer></script>
 </head>
 <body>
-    <div class = 'container'>
-        <div class = 'title'>
-            <h1>MicroSleep Dashboard</h1>
-            <p id="msg_error"></p>
-        </div>
-
-        <div class = 'body'>
-
-            <div class="search-container">
-                <input type = "text" placeholder="Search User" id ='serach_bar'>
-                <button id="seach_btn"><img src="icon/find.png"></button>
-            </div>
-
-            <div class="btn-container">
-                <button><img src="icon/sleep-mask.png" id="ms-eyeclose"> </button>
-                <p>Total Eyes Closed Per Day</p>
-            </div>
-
-            <div class="btn-container">
-                <button><img src="icon/hands.png" id="ms-pattern"> </button>
-                <p>Daily Microsleep Pattern</p>
-            </div>
-
-            <div class="btn-container">
-                <button><img src="icon/sleeping.png" id="ms-peakhour"> </button>
-                <p>Duration And Peak Time</p>
-            </div>
-
-            <div class="btn-container">
-                <button><img src="icon/facial-recognition.png" id="face-register"> </button>
-                <p>User Register</p>
-            </div>
-
-
-        </div>
-
-    </div>
-
-    <script src="MainPage.js"></script>
-
+  <header class="topbar">
+    <a class="brand" href="MainPage.html"><span class="brand-mark" aria-hidden="true">m<span>·</span></span>MicroSleep<span class="brand-tag">DRIVER INSIGHTS</span></a>
+    <span class="workspace">Your monitoring workspace</span><a href="Admin.html" class="admin-link">Admin console ↗</a>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">OVERVIEW</p><h1>Better awareness.<br><span>Safer journeys.</span></h1>
+      <p class="intro-copy">Understand eye closure patterns and explore your recorded driving sessions in one place.</p></div>
+      <div class="visual" aria-hidden="true"><div class="orbit"></div><div class="eye"><div class="pupil"></div></div><span class="visual-label">A little insight goes a long way.</span></div>
+    </section>
+    <section class="user-panel" aria-labelledby="user-heading">
+      <div><p class="eyebrow">START HERE</p><h2 id="user-heading">Find your driver profile</h2><p>Enter a registered name to unlock their insights.</p></div>
+      <div class="search-area"><form id="search-form"><label class="sr-only" for="serach_bar">Driver name</label><div class="search-field"><img src="Icon/find.png" alt=""><input type="text" placeholder="Enter driver name" id="serach_bar" autocomplete="off" required></div><button id="seach_btn" type="submit">Find driver <span aria-hidden="true">↗</span></button></form><p id="msg_error" role="status" aria-live="polite">No driver selected yet.</p></div>
+    </section>
+    <section class="register-panel"><span class="register-icon" aria-hidden="true">◎</span><div><h2>Ready for a monitoring session?</h2><p>Use your browser camera to record eye closure events for a registered driver.</p></div><a class="monitor-link" href="Monitoring.html">Start monitoring ↗</a></section>
+    <section class="insights" aria-labelledby="insights-heading">
+      <div class="section-heading"><h2 id="insights-heading">Explore your insights</h2><span id="selection-status">Select a driver to get started</span></div>
+      <div class="card-grid">
+        <button class="insight-card" id="ms-eyeclose" disabled><span class="card-top"><span class="icon-box mint"><img src="Icon/sleep-mask.png" alt=""></span><span class="arrow" aria-hidden="true">↗</span></span><span class="card-kicker">DAILY ACTIVITY</span><span class="card-title">Eye closure history</span><span class="card-copy">See how often eyes closed across each day of recorded activity.</span><span class="card-footer">View daily totals <span aria-hidden="true">→</span></span></button>
+        <button class="insight-card" id="ms-pattern" disabled><span class="card-top"><span class="icon-box lilac"><img src="Icon/hands.png" alt=""></span><span class="arrow" aria-hidden="true">↗</span></span><span class="card-kicker">TIME OF DAY</span><span class="card-title">Microsleep patterns</span><span class="card-copy">Explore when recorded events occur, from morning to midnight.</span><span class="card-footer">Explore patterns <span aria-hidden="true">→</span></span></button>
+        <button class="insight-card" id="ms-peakhour" disabled><span class="card-top"><span class="icon-box peach"><img src="Icon/sleeping.png" alt=""></span><span class="arrow" aria-hidden="true">↗</span></span><span class="card-kicker">DURATION & TIMING</span><span class="card-title">Duration & peak time</span><span class="card-copy">Review eye closure duration and identify the longest recorded event.</span><span class="card-footer">See duration insights <span aria-hidden="true">→</span></span></button>
+      </div>
+    </section>
+    <section class="register-panel"><span class="register-icon"><img src="Icon/facial-recognition.png" alt=""></span><div><h2>New driver? Start with a profile.</h2><p>Register a face to associate future recordings with a driver.</p></div><button id="face-register" type="button">Register driver <span aria-hidden="true">+</span></button></section>
+    <footer><span>MicroSleep <span class="footer-dot">/</span> Driver awareness dashboard</span><span>Insights from your recorded activity</span><span class="developer-credit">Developed by <strong>13loodeye-pixel</strong></span></footer>
+  </main>
 </body>
 </html>

@@ -1,26 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>DailyMicroSleepPattern</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="text/javascript" src="/eel.js"></script>
-    <link rel="stylesheet" href="DailyMicrosleepPatern.css">
-</head>
-<body>
-    <canvas id="pieChart">
-
-    </canvas>
-
-    <div id="summary">
-        <div class="color"><div id="color1"></div><p id="morning">Morning: 0%</p></div>
-        <div class="color"><div id="color2"></div><p id="afternoon">Afternoon: 0%</p></div>
-        <div class="color"><div id="color3"></div><p id="evening">Evening: 0%</p></div>
-        <div class="color"><div id="color4"></div><p id="night">Night: 0%</p></div>
-        <div class="color"><div id="color5"></div><p id="midnight">Midnight: 0%</p></div>
-    </div>
-
-    <script src="DailyMicrosleepPatern.js"></script>
-
-</body>
-</html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MicroSleep · Time-of-day patterns</title><link rel="stylesheet" href="MainPage.css"><link rel="stylesheet" href="GuiFYP.css"><link rel="stylesheet" href="DailyMicrosleepPatern.css"><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script><script src="CloudApi.js"></script><script src="Analytics.js" defer></script><script src="DailyMicrosleepPatern.js" defer></script></head>
+<body><header class="topbar"><a class="brand" href="MainPage.html"><span class="brand-mark" aria-hidden="true">m<span>·</span></span>MicroSleep<span class="brand-tag">DRIVER INSIGHTS</span></a><a class="back-link" href="MainPage.html">← Back to overview</a></header><main>
+<section class="page-intro"><div><p class="eyebrow">TIME OF DAY</p><h1>Find your rhythm.<br><span>A clearer perspective.</span></h1><p class="intro-copy">See how recorded events are distributed across morning, afternoon, evening, night, and midnight.</p></div><div class="driver-badge"><span class="badge-dot"></span><span id="driver-label">Recorded activity</span></div></section><p id="page-status" role="status" aria-live="polite">Loading insights…</p>
+<section class="metric-grid" aria-label="Activity summary"><article class="metric-card"><span class="metric-label" id="label-one">TOTAL EVENTS</span><strong id="metric-one">—</strong><p id="detail-one">Across recorded activity</p></article><article class="metric-card featured"><span class="metric-label" id="label-two">MOST ACTIVE</span><strong id="metric-two">—</strong><p id="detail-two">Highest recorded count</p></article><article class="metric-card"><span class="metric-label" id="label-three">DISTRIBUTION</span><strong id="metric-three">—</strong><p id="detail-three">Based on recorded data</p></article></section>
+<section class="chart-panel"><div class="chart-heading"><div><p class="eyebrow">ACTIVITY BREAKDOWN</p><h2>Events by time of day</h2><p id="chart-description">Recorded events for your selected driver.</p></div><span class="chart-legend"><span></span>Recorded counts</span></div><div class="analytics-layout"><div class="chart-wrap" id="chart-wrap"><canvas id="activity-chart" role="img" aria-label="Events by time of day. Equivalent values appear in the table below."></canvas></div><div id="period-list" class="period-list" hidden></div></div><div class="empty-state" id="empty-state" hidden><span aria-hidden="true">◷</span><h3>No recordings to show yet</h3><p>Select a driver with recordings from the overview, or start a monitoring session.</p><a href="MainPage.html">Back to overview →</a></div><div class="chart-note" id="chart-note">Only recorded activity is included.</div></section>
+<section class="details-panel"><details open><summary>View recorded values <span id="table-count"></span></summary><div class="table-scroll"><table><caption class="sr-only">Time-of-day patterns recorded values</caption><thead><tr><th scope="col" id="table-label">Period</th><th scope="col">Count</th><th scope="col">Share</th></tr></thead><tbody id="event-values"></tbody></table></div></details></section><div class="insight-note"><span aria-hidden="true">ⓘ</span><p>These charts describe recorded eye closure activity. They do not measure driving safety or provide a clinical assessment.</p></div><footer><span>MicroSleep / Time-of-day patterns</span><a href="Monitoring.html">Start a monitoring session ↗</a><span class="developer-credit">Developed by <strong>13loodeye-pixel</strong></span></footer></main></body></html>
